@@ -18,7 +18,7 @@ app.get('/roll/:numParam', (req, res) => {
     if (isNaN(num)) {
         return res.send('You must specify a number.')
     }    
-    const randomNum = Math.floor(Math.random() * num)
+    const randomNum = Math.floor(Math.random() * num + 1)
     
     res.send(`You rolled a ${randomNum}.`)
 })
@@ -57,6 +57,7 @@ const shoes = [
 app.get('/shoes', (req, res) => {
     let filteredShoes = shoes
     const {minPrice, maxPrice, type} = req.query
+    console.log(minPrice)
 
     if (minPrice) {
         filteredShoes = filteredShoes.filter((shoe) => {
@@ -75,7 +76,7 @@ app.get('/shoes', (req, res) => {
             return shoe.type === type
         })
     }
-    res.json(filteredShoes)
+    res.send(filteredShoes)
 
 
 })
